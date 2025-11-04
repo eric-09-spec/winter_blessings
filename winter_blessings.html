@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冬日温馨祝福 - 给亲爱的妈妈</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ffb6c1;
+        }
+        .header h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .wishes {
+            font-size: 1.2em;
+            padding: 20px;
+            background-color: #fff0f5;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .wishes p {
+            margin: 15px 0;
+            padding-left: 20px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .wishes p::before {
+            content: "💖";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ffb6c1;
+            font-style: italic;
+            color: #ff69b4;
+        }
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .heart {
+            color: #ff69b4;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+        .extra-message {
+            text-align: center;
+            font-size: 1.1em;
+            color: #ff1493;
+            margin: 30px 0;
+            padding: 15px;
+            background-color: #fff5f7;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>冬日温馨祝福 <span class="heart">❤</span></h1>
+        </div>
+        
+        <div class="wishes">
+            <p>亲爱的妈妈：</p>
+            <p>冬天到了，天气越来越冷，一定要注意保暖哦！</p>
+            <p>出门的时候记得多穿一点，别让自己冻着了。</p>
+            <p>晚上睡觉前用热水泡泡脚，会很舒服的。</p>
+            <p>生活再忙也要按时吃饭，保持营养均衡。</p>
+            <p>最近天气多变，要小心别感冒了，记得多喝水。</p>
+            <p>如果感觉累了，一定要好好休息，身体最重要！</p>
+            <p>希望这个冬天，妈妈能健康又温暖。</p>
+            <p>我爱您，妈妈！</p>
+        </div>
+        
+        <div class="extra-message" id="extraMessage">
+            愿妈妈的这个冬天充满阳光和温暖！
+        </div>
+        
+        <div class="footer">
+            <p>祝福传递中... 💫</p>
+            <p style="font-weight: bold; font-size: 1.1em; margin-top: 10px;">—— 王誉</p>
+        </div>
+    </div>
+
+    <script>
+        // 创建雪花效果
+        function createSnowflakes() {
+            const snowflakes = '❄️❅❆';
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 30; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerText = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animation = `falling ${Math.random() * 10 + 5}s linear infinite`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowflake.style.opacity = Math.random() * 0.8 + 0.2;
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+                
+                container.appendChild(snowflake);
+            }
+        }
+        
+        // 添加雪花下落动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes falling {
+                0% {
+                    top: -20px;
+                    transform: translateX(0) rotate(0deg);
+                }
+                100% {
+                    top: 100%;
+                    transform: translateX(${Math.random() * 100 - 50}px) rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 显示祝福文字的动画效果
+        function animateWishes() {
+            const paragraphs = document.querySelectorAll('.wishes p');
+            paragraphs.forEach((p, index) => {
+                setTimeout(() => {
+                    p.style.opacity = 1;
+                    p.style.transform = 'translateY(0)';
+                }, 500 + index * 600);
+            });
+            
+            // 显示额外祝福
+            setTimeout(() => {
+                const extraMessage = document.getElementById('extraMessage');
+                const messages = [
+                    '愿妈妈的这个冬天充满阳光和温暖！',
+                    '希望妈妈每天都能笑得像春天的花朵一样灿烂！',
+                    '妈妈的健康是我最大的心愿！',
+                    '这个冬天，让我们一起创造更多美好的回忆！'
+                ];
+                extraMessage.innerText = messages[Math.floor(Math.random() * messages.length)];
+                extraMessage.style.opacity = 1;
+            }, paragraphs.length * 600 + 1000);
+        }
+        
+        // 页面加载完成后执行
+        window.addEventListener('DOMContentLoaded', () => {
+            createSnowflakes();
+            animateWishes();
+        });
+    </script>
+</body>
+</html>
